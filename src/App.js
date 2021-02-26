@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import Customer from './components/Customer'
 import './App.css';
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 const customers = [
   {
@@ -32,20 +37,34 @@ const customers = [
 class App extends Component {
   render() {
     return(
-      customers.map((arr) => {
-        console.log(arr)
-        return(
-          <Customer
-            key={arr.id}
-            id={arr.id}
-            image={arr.image}
-            name={arr.name}
-            birthday={arr.birthday}
-            gender={arr.gender}
-            jop={arr.jop}
-          />
-        )
-      })
+           <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>번호</TableCell>
+                  <TableCell>이미지</TableCell>
+                  <TableCell>이름</TableCell>
+                  <TableCell>생년월일</TableCell>
+                  <TableCell>성별</TableCell>
+                  <TableCell>직업</TableCell>
+                </TableRow>
+              </TableHead>
+            <TableBody>
+            {customers.map((arr) => {
+                return(
+                  <Customer
+                    key={arr.id}
+                    id={arr.id}
+                    image={arr.image}
+                    name={arr.name}
+                    birthday={arr.birthday}
+                    gender={arr.gender}
+                    jop={arr.jop}
+                  />
+                )
+              })
+              }
+            </TableBody>
+          </Table> 
     );
   }
 }
