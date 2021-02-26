@@ -36,6 +36,7 @@ class App extends Component {
         console.log(arr)
         return(
           <Customer
+            key={arr.id}
             id={arr.id}
             image={arr.image}
             name={arr.name}
