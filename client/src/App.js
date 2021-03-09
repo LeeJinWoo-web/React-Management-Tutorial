@@ -28,20 +28,30 @@ class App extends Component {
 
 state = {
   customers: "",
-  completed: 0
+  completed: 0,
+  isLoad: false
 }
 
 componentDidMount() {
   this.timer = setInterval(this.progress, 80)
   this.callApi()
-  .then(res => this.setState({customers: res}))
+  .then(res => this.setState({
+    customers: res, 
+    isLoad: true
+  }))
   .catch(err => console.log(err))
+}
+
+//setInterval clear
+componentDidUpdate(){
+  if(this.state.isLoad){
+    clearInterval(this.timer)
+  }
 }
 
 callApi = async () => {
   const response = await fetch('/api/customers');
   const body = await response.json();
-  clearInterval(this.timer)
   return body;
 }
 
