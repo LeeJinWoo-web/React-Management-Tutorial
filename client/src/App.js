@@ -27,10 +27,27 @@ const styles = theme => ({
 
 class App extends Component {
 
-state = {
-  customers: "",
-  completed: 0,
-  isLoad: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      customers: "",
+      completed: 0,
+      isLoad: false
+    }
+  }
+
+stateRefresh = () => {
+  this.setState({
+    customers: "",
+    completed: 0,
+    isLoad: false
+  });
+  this.callApi()
+  .then(res => this.setState({
+    customers: res, 
+    isLoad: true
+  }))
+  .catch(err => console.log(err))
 }
 
 componentDidMount() {
@@ -101,7 +118,7 @@ progress = () => {
             </TableBody>
           </Table> 
     </Paper>
-    <CustomerAdd/>
+    <CustomerAdd stateRefresh={this.stateRefresh}/>
     </div>
     );
   }
