@@ -25,7 +25,7 @@ const upload = multer({dest: './upload'})
 
 app.get('/api/customers',(req, res) => {
     connection.query(
-      "SELECT * FROM CUSTOMER",
+      "SELECT * FROM CUSTOMER WHERE isDeleted = 0",
       (err, rows, fields) => {
          res.send(rows);
       }
@@ -48,5 +48,15 @@ app.post('/api/customers', upload.single('image'), (req, res) => {
         console.log(err)
       })
 });
+
+app.delete('/api/customers/:id', (req, res) =>{
+  console.log(req.params)
+  let sql = 'UPDATE CUSTOMER SET isDeleted = 1 WHERE id = ?';
+  let params = [req.params.id];
+  connection.query(sql, params,
+    (err, rows, feilds) => {
+      res.send(rows);
+    })
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

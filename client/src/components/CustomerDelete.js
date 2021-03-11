@@ -3,6 +3,7 @@ import React from 'react';
 class CustomerDelete extends React.Component{
 
     deleteCustomer(id){
+        //REST API
         const url = '/api/customers/' + id;
         fetch(url, {
             method: 'DELETE'
@@ -16,3 +17,5 @@ class CustomerDelete extends React.Component{
         )
     }
 }
+
+export default CustomerDelete;

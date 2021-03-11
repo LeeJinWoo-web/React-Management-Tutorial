@@ -93,6 +93,7 @@ progress = () => {
                   <TableCell>생년월일</TableCell>
                   <TableCell>성별</TableCell>
                   <TableCell>직업</TableCell>
+                  <TableCell>설정</TableCell>
                 </TableRow>
               </TableHead>
             <TableBody>
@@ -106,6 +107,7 @@ progress = () => {
                     birthday={arr.birthday}
                     gender={arr.gender}
                     jop={arr.jop}
+                    stateRefresh = {this.stateRefresh}
                   />
                 )
               }) : 
