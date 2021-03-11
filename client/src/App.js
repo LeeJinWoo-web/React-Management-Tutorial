@@ -106,7 +106,7 @@ progress = () => {
                     name={arr.name}
                     birthday={arr.birthday}
                     gender={arr.gender}
-                    jop={arr.jop}
+                    job={arr.job}
                     stateRefresh = {this.stateRefresh}
                   />
                 )
